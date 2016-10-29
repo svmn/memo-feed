@@ -49,7 +49,7 @@ const pool = new Pool(io);
 const fetcher = new Fetcher(pool);
 
 io.on('connection', function(socket) {
-  pool.get().forEach(post => socket.emit('post', post));
+  socket.emit('post', pool.get());
 });
 
 fetcher.start();

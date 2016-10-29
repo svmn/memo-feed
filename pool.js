@@ -21,7 +21,7 @@ class Pool {
 	}
 
 	emit(item) {
-		this.io.emit('post', item);
+		this.io.emit('post', [item]);
 	}
 
 	get() {

@@ -1,12 +1,18 @@
 {
-  "name": "openshift-cartridge-nodejs-template",
-  "version": "1.0.1",
-  "description": "Custom Node.js cartridge for OpenShift - sample application",
+  "name": "memes-feed",
+  "version": "1.0.0",
+  "description": "Memes via websockets",
   "private": true,
-  "main": "start.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node --use_strict start.js"
+    "start": "node --use_strict app.js"
   },
-  "author": "Ionut-Cristian Florescu <ionut.florescu@gmail.com>",
-  "license": "ISC"
+  "author": "nyaa11 <root@@tuzach.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "lodash": "^4.16.4",
+    "node-fetch": "^1.6.3",
+    "socket.io": "^1.5.1"
+  }
 }

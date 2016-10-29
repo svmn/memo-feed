@@ -3,9 +3,12 @@ const http         = require('http'),
       path         = require('path'),
       contentTypes = require('./utils/content-types'),
       sysInfo      = require('./utils/sys-info'),
-      env          = process.env;
+      env          = process.env,
+      SocketIO     = require('socket.io'),
+      Pool         = require('./pool'),
+      Fetcher      = require('./fetcher');
 
-let server = http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
   let url = req.url;
   if (url == '/') {
     url += 'index.html';
@@ -37,6 +40,19 @@ let server = http.createServer(function (req, res) {
     });
   }
 });
+
+// Memes Feed
+const io = new SocketIO(server, {
+  origins: 'localhost:* tuzach.in:*'
+});
+const pool = new Pool(io);
+const fetcher = new Fetcher(pool);
+
+io.on('connection', function(socket) {
+  pool.get().forEach(post => socket.emit('post', post));
+});
+
+fetcher.start();
 
 server.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function () {
   console.log(`Application worker ${process.pid} started...`);

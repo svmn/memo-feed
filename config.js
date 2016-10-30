@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-  poolMaxsize: 80,
+  chunkMaxSize: 30,
+  poolMaxsize: 100,
   fetcherPostCount: 5,
   fetcherInterval: 25000
 };

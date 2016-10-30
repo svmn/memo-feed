@@ -25,7 +25,7 @@ class Pool {
 	}
 
 	get() {
-		return this.pool;
+		return this.pool.slice(-config.chunkMaxSize).reverse();
 	}
 }
 
